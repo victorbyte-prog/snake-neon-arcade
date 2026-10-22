@@ -1,0 +1,287 @@
+:root {
+  --bg1: #050816;
+  --bg2: #0a1328;
+  --panel: rgba(11, 18, 32, 0.86);
+  --panel-border: rgba(125, 211, 252, 0.35);
+  --green-1: #4ade80;
+  --green-2: #22c55e;
+  --green-3: #14532d;
+  --red-1: #fb7185;
+  --red-2: #f43f5e;
+  --blue-1: #7dd3fc;
+  --blue-2: #38bdf8;
+  --amber: #fbbf24;
+  --cyan: #67e8f9;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --shadow: rgba(34, 211, 238, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 30%),
+    linear-gradient(135deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.screen {
+  position: relative;
+  width: min(94vw, 560px);
+  padding: 18px;
+  border-radius: 30px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid var(--panel-border);
+  box-shadow:
+    0 0 32px rgba(34, 211, 238, 0.18),
+    0 0 90px rgba(34, 197, 94, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 35%, rgba(34,211,238,0.03));
+  pointer-events: none;
+}
+
+.topbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 0 6px;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  font-size: 1.25rem;
+  text-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+}
+
+.brand .icon {
+  font-size: 1.55rem;
+  filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.8));
+}
+
+.scoreboard {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pill {
+  border-radius: 12px;
+  padding: 7px 12px;
+  font-size: 0.9rem;
+  background: rgba(15, 118, 110, 0.14);
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  box-shadow: inset 0 0 10px rgba(125,211,252,0.05);
+}
+
+.pill strong {
+  color: var(--green-1);
+  font-weight: 800;
+}
+
+.arena-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at center, rgba(15, 118, 110, 0.08), rgba(2, 6, 23, 0.97) 50%, rgba(2, 6, 23, 1));
+  border-radius: 18px;
+  border: 2px solid rgba(125, 211, 252, 0.35);
+  box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.12);
+}
+
+.hud {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+button {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+button:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+#startBtn {
+  background: linear-gradient(135deg, var(--green-1), var(--green-2));
+  color: #052e16;
+  box-shadow: 0 12px 18px rgba(34, 197, 94, 0.22);
+}
+
+#pauseBtn {
+  background: linear-gradient(135deg, var(--amber), #f59e0b);
+  color: #3f2d00;
+  box-shadow: 0 12px 18px rgba(245, 158, 11, 0.22);
+}
+
+.difficulty {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.difficulty button {
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--text);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.difficulty button.active {
+  background: linear-gradient(135deg, rgba(125,211,252,0.22), rgba(34,211,238,0.10));
+  border-color: rgba(103, 232, 249, 0.6);
+  color: white;
+  box-shadow: inset 0 0 14px rgba(103, 232, 249, 0.14);
+}
+
+.touch-controls {
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  grid-template-rows: repeat(3, 58px);
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.touch-controls button {
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border-radius: 14px;
+  font-size: 1.45rem;
+  background: rgba(51, 65, 85, 0.9);
+  color: white;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: inset 0 0 14px rgba(255,255,255,0.05);
+}
+
+.touch-controls button[data-dir="up"] { grid-column: 2; grid-row: 1; }
+.touch-controls button[data-dir="left"] { grid-column: 1; grid-row: 2; }
+.touch-controls button[data-dir="center"] { grid-column: 2; grid-row: 2; background: linear-gradient(135deg, var(--green-1), var(--green-2)); color: #052e16; }
+.touch-controls button[data-dir="right"] { grid-column: 3; grid-row: 2; }
+.touch-controls button[data-dir="down"] { grid-column: 2; grid-row: 3; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.62);
+  border-radius: 22px;
+  z-index: 5;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: opacity 0.18s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-card {
+  text-align: center;
+  padding: 32px 22px;
+  max-width: 360px;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.12);
+}
+
+.intro-card h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  letter-spacing: 1px;
+  color: var(--cyan);
+  text-shadow: 0 0 18px rgba(103, 232, 249, 0.6);
+}
+
+.intro-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+  .screen {
+    padding: 14px 12px 12px;
+    border-radius: 22px;
+  }
+
+  .brand {
+    font-size: 1.1rem;
+  }
+
+  .pill {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .touch-controls {
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+  }
+
+  .touch-controls button {
+    width: 52px;
+    height: 52px;
+  }
+}

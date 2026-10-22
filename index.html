@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Arcade</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="screen">
+    <div id="overlay" class="overlay">
+      <div class="intro-card">
+        <h2>Snake Arcade</h2>
+        <p>Use as setas ou WASD para jogar. Coletando pontos você ganha velocidade e mantém a cobra viva.</p>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="brand">
+        <span class="icon">🐍</span>
+        <span>Snake Arcade</span>
+      </div>
+
+      <div class="scoreboard">
+        <div class="pill">Pontos: <strong id="score">0</strong></div>
+        <div class="pill">Máx: <strong id="highScore">0</strong></div>
+      </div>
+    </div>
+
+    <div class="arena-wrap">
+      <canvas id="game" width="420" height="420"></canvas>
+    </div>
+
+    <div class="hud">
+      <button id="startBtn">Iniciar</button>
+      <button id="pauseBtn">Pausar</button>
+    </div>
+
+    <div class="difficulty">
+      <button class="diff-btn active" data-difficulty="easy">Fácil</button>
+      <button class="diff-btn" data-difficulty="normal">Médio</button>
+      <button class="diff-btn" data-difficulty="hard">Difícil</button>
+    </div>
+
+    <div class="touch-controls" aria-label="Controles de toque">
+      <button data-dir="up">▲</button>
+      <button data-dir="left">◀</button>
+      <button data-dir="center">●</button>
+      <button data-dir="right">▶</button>
+      <button data-dir="down">▼</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
